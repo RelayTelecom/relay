@@ -11,12 +11,10 @@ app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-var clients = 0;
-
 io.on('connection', function(socket){
-	clients++;
 	var roomNumber = 0;
 	
+	var clients = Object.keys(io.sockets.sockets).length;
 	io.sockets.emit('broadcast', clients + ' client(s) connected total');
 	
 	socket.on('joinRoom', function(roomNo) {
@@ -34,7 +32,6 @@ io.on('connection', function(socket){
 	});
 	 
 	socket.on('disconnect', function () {
-		clients--;
 		io.sockets.emit('broadcast', clients + ' client(s) connected total');
     });
 });
