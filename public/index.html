@@ -4,10 +4,23 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	  var socket = io();
+	  
+	  function doSomething(){
+		  socket.emit('joinRoom', 15);
+	  }
+	
 	  socket.on('broadcast',function(data){
-			  document.body.innerHTML = '';
-			  document.write(data.description);
+		  document.getElementById('message-container').text = data;
+	  });
+	  
+	  socket.on('connectToRoom',function(data){
+		  document.getElementById('message-container').text = data;
 	  });
 	</script>
-	<body>Hello world</body>
+	<body>
+		<button type="button" name="button" onclick="doSomething()">Do Something</button>
+		<br/>
+		<br/>
+		<a id="message-container">blah</a>
+	</body>
 </html>

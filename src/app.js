@@ -16,7 +16,13 @@ var clients = 0;
 io.on('connection', function(socket){
 	clients++;
 	
-	io.sockets.emit('broadcast',{ description: clients + ' clients connected!'});
+	io.sockets.emit('broadcast', clients + ' connected');
+	
+	socket.on('joinRoom', function(roomNumber) {
+		socket.join(roomNumber);
+		console.log('client joined room ' + roomNumber);
+		io.sockets.in(roomNumber).emit('connectToRoom', 'another client has joined you')
+	})
 	
 	socketStream(socket).on('audioBuffer',function(audioBuffer){
 //		console.log(audioBuffer);
