@@ -1,0 +1,10 @@
+{
+  "name": "relay",
+  "version": "0.1.0",
+  "repository": "https://github.com/RelayTelecom/relay.git",
+  "private": "true",
+  "dependencies": {
+    "socket.io": "^2.0.2",
+    "web3": "^0.19.0"
+  }
+}
