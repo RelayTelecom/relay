@@ -5,22 +5,46 @@
 	<script>
 	  var socket = io();
 	  
-	  function doSomething(){
-		  socket.emit('joinRoom', 15);
+	  function joinRoom(){
+		  roomNumber = document.getElementById('roomNumber').value;
+		  socket.emit('joinRoom', roomNumber);
+	  }
+	  
+	  function audioBuffer(){
+		  message = document.getElementById('message').value;
+		  socket.emit('audioBuffer', message);
 	  }
 	
 	  socket.on('broadcast',function(data){
-		  document.getElementById('message-container').text = data;
+		  document.getElementById('broadcast').text = data;
 	  });
 	  
 	  socket.on('connectToRoom',function(data){
-		  document.getElementById('message-container').text = data;
+		  document.getElementById('connectToRoom').text = data;
+	  });
+	  
+	  socket.on('communicate',function(data){
+		  document.getElementById('communicate').text = data;
 	  });
 	</script>
 	<body>
-		<button type="button" name="button" onclick="doSomething()">Do Something</button>
+		<a id="broadcast">broadcast placeholder</a>
 		<br/>
 		<br/>
-		<a id="message-container">blah</a>
+		<button type="button" name="joinRoomButton" onclick="joinRoom()">Join Room</button>
+		<br/>
+		<input id="roomNumber" type="text" name="roomNumber" value="" placeholder="Enter Room Number">
+		<br/>
+		<a id="connectToRoom">joinRoom placeholder</a>
+		<br/>
+		<br/>
+		<button type="button" name="audioBufferButton" onclick="audioBuffer()">Send Message</button>
+		<br/>
+		<input id="message" type="text" name="message" value="" placeholder="Say Something">
+		<br/>
+		<br/>
+		<a>Channel Messages:</a>
+		<br/>
+		<a id="communicate">communicate placeholder</a>
 	</body>
 </html>
