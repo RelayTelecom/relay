@@ -26,9 +26,10 @@ io.on('connection', function(socket){
 		socket.broadcast.to(roomNumber).emit('connectToRoom', clientsInRoom + ' client(s) in room now');
 	});
 	
-//	ss(socket).on('audioBuffer', function(audioBuffer){ // enable for socket streaming
-	socket.on('audioBuffer', function(audioBuffer){
-		socket.broadcast.to(roomNumber).emit('communicate', audioBuffer);
+	socket.on('audioBuffer', function(audioChunk){
+		var viewBuffer = new Float32Array(audioChunk);
+		console.log(viewBuffer);
+		socket.broadcast.to(roomNumber).emit('communicate', viewBuffer);
 	});
 	 
 	socket.on('disconnect', function () {
