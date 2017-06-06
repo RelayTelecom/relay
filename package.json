@@ -16,5 +16,8 @@
     "web3": "^0.19.0"
   },
   "main": "index.js",
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js"
+  }
 }
