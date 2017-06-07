@@ -12,11 +12,9 @@ var ss = require('socket.io-stream');
 const port = process.env.PORT || 8642;
 
 const whisperSocket = ioClient("https://relay-telecom.herokuapp.com");
-publicIp.v4().then((ip) => {
-	setInterval(() => {
-		whisperSocket.emit('relaytelecom-advertise', ip);
-	}, 3000);
-});
+setInterval(() => {
+	whisperSocket.emit('relaytelecom-advertise');
+}, 3000);
 
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname, '../public', 'index.html'));
