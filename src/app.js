@@ -14,7 +14,7 @@ const port = process.env.PORT || 8642;
 const whisperSocket = ioClient("https://relay-telecom.herokuapp.com");
 publicIp.v4().then((ip) => {
 	setInterval(() => {
-		whisperSocket.emit('relaytelecom-advertise', ip+':'+port);
+		whisperSocket.emit('relaytelecom-advertise', ip);
 	}, 3000);
 });
 
