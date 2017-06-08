@@ -36,9 +36,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('audioBuffer', function(audioChunk){
-		var viewBuffer = new Float32Array(audioChunk);
-		console.log(viewBuffer);
-		socket.broadcast.to(roomNumber).emit('communicate', viewBuffer);
+		socket.broadcast.to(roomNumber).emit('communicate', audioChunk);
 	});
 
 	socket.on('disconnect', function () {
