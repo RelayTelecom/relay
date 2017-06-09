@@ -10,6 +10,7 @@ var publicIp = require('public-ip');
 var ss = require('socket.io-stream');
 
 let showPort = 8642;
+let showIp = null;
 const port = process.env.PORT || showPort;
 
 
@@ -17,10 +18,14 @@ if (process.env.PORT) {
 	showPort = 80;
 }
 
+if (process.env.PORT) {
+	showIp = 'relay-relay.herokuapp.com';
+}
+
 const whisperSocket = ioClient("https://relay-telecom.herokuapp.com");
 publicIp.v4().then((ip) => {
 	setInterval(() => {
-		whisperSocket.emit('relaytelecom-advertise', ip + ':' + showPort);
+		whisperSocket.emit('relaytelecom-advertise', (showIp || ip) + ':' + showPort);
 	}, 3000);
 });
 
