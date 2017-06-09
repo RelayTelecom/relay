@@ -19,7 +19,7 @@ if (process.env.PORT) {
 }
 
 if (process.env.PORT) {
-	showIp = 'https://relay-relay.herokuapp.com';
+	showIp = 'relay-relay.herokuapp.com';
 }
 
 const whisperSocket = ioClient("https://relay-telecom.herokuapp.com");
