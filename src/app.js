@@ -15,11 +15,11 @@ const port = process.env.PORT || showPort;
 
 
 if (process.env.PORT) {
-	showPort = 80;
+	showPort = 443;
 }
 
 if (process.env.PORT) {
-	showIp = 'relay-relay.herokuapp.com';
+	showIp = 'https://relay-relay.herokuapp.com';
 }
 
 const whisperSocket = ioClient("https://relay-telecom.herokuapp.com");
